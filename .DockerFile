@@ -1,7 +1,7 @@
 FROM quay.io/keycloak/keycloak:latest
 
-ENV KEYCLOAK_ADMIN=admin
-ENV KEYCLOAK_ADMIN_PASSWORD=admin
+ENV KEYCLOAK_ADMIN=git.manager
+ENV KEYCLOAK_ADMIN_PASSWORD=4245-gitmanager
 
 RUN /opt/keycloak/bin/kc.sh build
 
