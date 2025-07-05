@@ -1,0 +1,1 @@
+web: /opt/keycloak/bin/kc.sh start --hostname-strict=false --proxy=edge --http-relative-path=/auth
