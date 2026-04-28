@@ -11,29 +11,14 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/users/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: userService
-                fallbackUri: forward:/user-service-fallback
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/products/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: productService
-                fallbackUri: forward:/product-service-fallback
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/orders/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: orderService
-                fallbackUri: forward:/order-service-fallback
 
 eureka:
   client:
@@ -52,41 +37,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,actuator,resilience4j-circuitbreakers
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      userService:
-        registerHealthIndicator: true
-        eventConsumerBufferSize: 10
-        failureRateThreshold: 50
-        minimumNumberOfCalls: 5
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        slidingWindowType: COUNT_BASED
-      productService:
-        registerHealthIndicator: true
-        eventConsumerBufferSize: 10
-        failureRateThreshold: 50
-        minimumNumberOfCalls: 5
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        slidingWindowType: COUNT_BASED
-      orderService:
-        registerHealthIndicator: true
-        eventConsumerBufferSize: 10
-        failureRateThreshold: 50
-        minimumNumberOfCalls: 5
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        slidingWindowType: COUNT_BASED
+        include: health,actuator
 
 
 springdoc:
