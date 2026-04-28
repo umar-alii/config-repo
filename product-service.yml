@@ -15,6 +15,15 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
   application:
     name: product-service
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+      client:
+        config:
+          default:
+            readTimeout: 5000
+            connectTimeout: 5000
 
 eureka:
   client:
@@ -30,6 +39,10 @@ management:
   zipkin:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans
+  endpoints:
+    web:
+      exposure:
+        include: health,actuator,resilience4j-circuitbreakers
 
 resilience4j:
   circuitbreaker:
